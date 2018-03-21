@@ -104,5 +104,14 @@ def gd_create_folder(folder_name = ''):
         fid = file.get('id')
         return fid
 
+def gd_upload_file(folder_name = '', file_name='', from_file=''):
+    file_metadata = {'name': file_name}
+    media = MediaFileUpload('/Users/elistavitski/tmp/tmp.dat',
+                            mimetype='text/html')
+
+    fiahl = drive_service.files().create(body=file_metadata, media_body=media).execute()
+
+    pass
+
 
 
