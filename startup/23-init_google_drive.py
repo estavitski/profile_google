@@ -104,7 +104,7 @@ def gd_create_folder(folder_name = ''):
         fid = file.get('id')
         return fid
 
-def gd_upload_file(folder_name = '', file_name='', from_file=''):
+def gd_upload_file(gd_folder_name = '', gd_file_name='', from_local_file=''):
     file_metadata = {'name': file_name}
     media = MediaFileUpload('/Users/elistavitski/tmp/tmp.dat',
                             mimetype='text/html')
