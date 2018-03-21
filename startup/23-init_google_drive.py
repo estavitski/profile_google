@@ -1,10 +1,7 @@
 
-
-
 SCOPES = 'https://www.googleapis.com/auth/drive'
 CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'Drive API Python Quickstart'
-
 
 
 def get_credentials_drive():
@@ -35,15 +32,13 @@ def get_credentials_drive():
         print('Storing credentials to ' + credential_path)
     return credentials
 
-
-
 credentials = get_credentials_drive()
 http = credentials.authorize(httplib2.Http())
 drive_service = discovery.build('drive', 'v3', http=http)
 
 
 def gd_retrieve_files_from_folder(parent = ''):
-    _q = "mimeType != 'application/vnd.google-apps.folder' and '{}' in parents".format(parent)
+    _q = "mimeType != 'application/vnd.google-apps.file' and '{}' in parents".format(parent)
     page_token = None
     files = list()
     while True:
@@ -56,8 +51,6 @@ def gd_retrieve_files_from_folder(parent = ''):
         if page_token is None:
             break
     return files
-
-
 
 
 def gd_folder_exists_in_root(folder_name = ''):
@@ -73,20 +66,6 @@ def gd_folder_exists_in_root(folder_name = ''):
     return fid
 
 
-'''
-      param = {}
-      param['q'] = "mimeType = 'application/vnd.google-apps.folder'"
-      if page_token:
-          param['pageToken'] = page_toke
-      children = drive_service.children().list(folderId, **param).execute()
-
-      for child in children.get('items', []):
-        print ('File Id: %s' % child['id'])
-      page_token = children.get('nextPageToken')
-      if not page_token:
-        break
-
-'''
 
 def current_folder():
     #folder_name = '{}.{}.{}'.format(RE.md['year'], RE.md['cycle'], RE.md['proposal'])
@@ -104,9 +83,13 @@ def gd_create_folder(folder_name = ''):
         fid = file.get('id')
         return fid
 
-def gd_upload_file(gd_folder_name = '', gd_file_name='', from_local_file=''):
-    file_metadata = {'name': file_name}
-    media = MediaFileUpload('/Users/elistavitski/tmp/tmp.dat',
+
+def gd_upload_file_to_folder(folder_id = '', file_name='', from_local_file=''):
+    file_metadata = {
+        'name': file_name
+        'parents': [folder_id]
+    }
+    media = MediaFileUpload(from_local_file,
                             mimetype='text/html')
 
     fiahl = drive_service.files().create(body=file_metadata, media_body=media).execute()
