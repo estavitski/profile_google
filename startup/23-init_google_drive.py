@@ -86,15 +86,16 @@ def gd_create_folder(folder_name = ''):
 
 def gd_upload_file_to_folder(folder_id = '', file_name='', from_local_file=''):
     file_metadata = {
-        'name': file_name,
+        'name': file_name
         'parents': [folder_id]
     }
     media = MediaFileUpload(from_local_file,
                             mimetype='text/html')
 
-    fiahl = drive_service.files().create(body=file_metadata, media_body=media).execute()
-
-    pass
+    return drive_service.files().create(body=file_metadata, media_body=media).execute()
 
 
+
+def search_in_list(name, files):
+    return [item for item in files if item['name'] == name]
 
