@@ -65,7 +65,7 @@ def create_drafts(schedule):
 
 def create_html_drafts(schedule):
     drafts = []
-    fid = open('/Users/elistavitski/Documents/Running Projects /ISS operations/letter.html', 'r')
+    fid = open('/Users/elistavitski/Running Projects/ISS operations/letter.html', 'r')
     letter = fid.read().replace('\n', '')
     print(letter)
     print(type(letter))
