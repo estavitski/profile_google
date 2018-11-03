@@ -18,7 +18,7 @@ def get_credentials_drive():
     if not os.path.exists(credential_dir):
         os.makedirs(credential_dir)
     credential_path = os.path.join(credential_dir,
-                                   'drive-python-quickstart.json')
+                                   'client_secret.json')
 
     store = Storage(credential_path)
     credentials = store.get()
