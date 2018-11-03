@@ -31,11 +31,11 @@ def get_credentials_drive():
             credentials = tools.run(flow, store)
         print('Storing credentials to ' + credential_path)
     return credentials
-'''
+
 credentials = get_credentials_drive()
 http = credentials.authorize(httplib2.Http())
 drive_service = discovery.build('drive', 'v3', http=http)
-'''
+
 
 def gd_retrieve_files_from_folder(parent = ''):
     _q = "mimeType != 'application/vnd.google-apps.file' and '{}' in parents".format(parent)
