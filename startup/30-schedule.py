@@ -42,30 +42,11 @@ def create_events(schedule):
 
     return(events)
 
-def create_drafts(schedule):
+
+
+def create_html_drafts(schedule, cycle):
     drafts = []
-    for i in range(len(schedule)):
-        d = schedule.iloc[i]
-        email = d['E-mail']
-        start='{} {}'.format(str(d['Start date'])[:10], d['Start time'])
-        end = '{} {}'.format(str(d['End date'])[:10], d['End time'])
-
-        message_body = 'Dear {},\n\nThe beamtime at NSLS-II ISS beamline against the GUP {} ' \
-                       'in the 2018-2 Cycle has been scheduled for\n\n'\
-                       '{} - {}\n\n'.format(d['PI'],d['Proposal'],start,end)
-
-        subject = 'NSLS-II 8-ID ISS 2018-1 Beamtime scheduling notification for GUP {}'.format(d['Proposal'])
-
-        email = '{}, istavitski@bnl.gov, kattenkofer@bnl.gov'.format(d['E-mail'])
-        print(d['E-mail'])
-        draft = create_message('staff8id@gmail.com', email, subject,message_body)
-        drafts.append(draft)
-
-    return drafts
-
-def create_html_drafts(schedule):
-    drafts = []
-    fid = open('/Users/elistavitski/Documents/Running Projects /ISS operations/letter.html', 'r')
+    fid = open('/Users/elistavitski/Running Projects/ISS operations/letter.html', 'r')
     letter = fid.read().replace('\n', '')
     print(letter)
     print(type(letter))
@@ -77,9 +58,9 @@ def create_html_drafts(schedule):
         end = '{} {}'.format(str(d['End date'])[:10], d['End time'])
         message_body = letter.format(d['PI'],d['Proposal'],start,end)
 
-        subject = 'NSLS-II 8-ID ISS 2018-2 Beamtime scheduling notification for GUP {}'.format(d['Proposal'])
+        subject = 'NSLS-II 8-ID ISS {} Beamtime scheduling notification for GUP {}'.format(cycle, d['Proposal'])
 
-        email = '{}, istavitski@bnl.gov, kattenkofer@bnl.gov'.format(d['E-mail'])
+        email = '{}, istavitski@bnl.gov'.format(d['E-mail'])
         print(d['E-mail'])
         draft = create_html_message('staff8id@gmail.com', email, subject,message_body)
         drafts.append(draft)

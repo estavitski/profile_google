@@ -92,7 +92,7 @@ def gd_upload_file_to_folder(folder_id = '', file_name='', from_local_file=''):
     media = MediaFileUpload(from_local_file,
                             mimetype='text/html')
 
-    return drive_service.files().create(body=file_metadata, media_body=media).execute()
+    return drive_service.files().create(body=file_metadata, media_body=media, fields='webViewLink, id').execute()
 
 
 
