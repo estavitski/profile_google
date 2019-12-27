@@ -9,12 +9,12 @@ def push_schedule(filename=None, no_email=False, no_cal=False):
             upload_draft(draft)
     if not no_cal:
         for event in events:
-            cal=serviceCalendar.events().insert(calendarId='primary', body=event).execute()
+            cal=gcalendar_service.events().insert(calendarId='primary', body=event).execute()
             print(cal)
 
 
-# In [5]: ev = serviceCalendar.events().insert(calendarId='primary', body=events[0]).execute()
+# In [5]: ev = gcalendar_service.events().insert(calendarId='primary', body=events[0]).execute()
 #
-# In [6]: ev = serviceCalendar.events().insert(calendarId='primary', body=events[1]).execute()
+# In [6]: ev = gcalendar_service.events().insert(calendarId='primary', body=events[1]).execute()
 #
 # In [7]:

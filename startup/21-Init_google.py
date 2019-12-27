@@ -1,14 +1,6 @@
-
-
 from __future__ import print_function
-import httplib2
-import os
-
-from apiclient import discovery
-from oauth2client import client
-from oauth2client import tools
-from oauth2client.file import Storage
-
-import datetime
-
-from googleapiclient.http import MediaFileUpload
+import pickle
+import os.path
+from googleapiclient.discovery import build
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
