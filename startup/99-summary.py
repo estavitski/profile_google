@@ -1,6 +1,6 @@
 def push_schedule(filename=None, no_email=False, no_cal=False):
     if filename is None:
-        filename = '/Users/elistavitski/Documents/Running Projects /ISS operations/2018-2 Cycle/2018 2 ISS schedule list.xlsx'
+        filename = '/Users/elistavitski/Documents/Running Projects /ISS operations/2018-3 Cycle/2018 3 ISS schedule list.xlsx'
     schedule = read_excel(filename)
     drafts = create_html_drafts(schedule)
     events = create_events(schedule)
