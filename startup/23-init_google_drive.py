@@ -24,7 +24,32 @@ def get_service_drive():
     service = build('drive', 'v3', credentials=creds)
     return service
 
-drive_service = get_service_drive()
+    Returns:
+        Credentials, the obtained credential.
+    """
+    home_dir = os.path.expanduser('~')
+    credential_dir = os.path.join(home_dir, '.credentials')
+    if not os.path.exists(credential_dir):
+        os.makedirs(credential_dir)
+    credential_path = os.path.join(credential_dir,
+                                   'drive-python-quickstart.json')
+
+    store = Storage(credential_path)
+    credentials = store.get()
+    if not credentials or credentials.invalid:
+        flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
+        flow.user_agent = APPLICATION_NAME
+        if flags:
+            credentials = tools.run_flow(flow, store, flags)
+        else: # Needed only for compatibility with Python 2.6
+            credentials = tools.run(flow, store)
+        print('Storing credentials to ' + credential_path)
+    return credentials
+'''
+credentials = get_credentials_drive()
+http = credentials.authorize(httplib2.Http())
+drive_service = discovery.build('drive', 'v3', http=http)
+'''
 
 def gd_retrieve_files_from_folder(parent = ''):
     _q = "mimeType != 'application/vnd.google-apps.file' and '{}' in parents".format(parent)
@@ -81,7 +106,7 @@ def gd_upload_file_to_folder(folder_id = '', file_name='', from_local_file=''):
     media = MediaFileUpload(from_local_file,
                             mimetype='text/html')
 
-    return drive_service.files().create(body=file_metadata, media_body=media).execute()
+    return drive_service.files().create(body=file_metadata, media_body=media, fields='webViewLink, id').execute()
 
 
 
