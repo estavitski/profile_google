@@ -19,7 +19,7 @@ def get_service_gcalendar():
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                'credentials.json', SCOPES)
+                'credentials_calendar.json', SCOPES)
             creds = flow.run_local_server(port=0)
         # Save the credentials for the next run
         with open('token_gcalendar.pickle', 'wb') as token:

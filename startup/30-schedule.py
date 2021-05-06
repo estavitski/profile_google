@@ -46,8 +46,8 @@ def create_events(schedule):
 
 def create_html_drafts(schedule, cycle):
     drafts = []
-    fid = open('/Users/elistavitski/Documents/Running Projects/ISS operations/letter.html', 'r')
-    letter = fid.read().replace('\n', '')
+    fid = open('/Users/elistavitski/Documents/Running Projects/ISS operations/letter COVID.html', 'r')
+    letter = fid.read()d
     print(letter)
     print(type(letter))
 
@@ -60,7 +60,7 @@ def create_html_drafts(schedule, cycle):
 
         subject = 'NSLS-II 8-ID ISS {} Beamtime scheduling notification for GUP {}'.format(cycle, d['Proposal'])
 
-        email = '{}, istavitski@bnl.gov'.format(d['E-mail'])
+        email = '{}, istavitski@bnl.gov, dleshchev@bnl.gov'.format(d['E-mail'])
         print(d['E-mail'])
         draft = create_html_message('staff8id@gmail.com', email, subject,message_body)
         drafts.append(draft)
