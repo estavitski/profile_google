@@ -1,16 +1,26 @@
-def push_schedule(filename=None, no_email=False, no_cal=False):
-    if filename is None:
-        filename = '/Users/elistavitski/Documents/Running Projects /ISS operations/2018-3 Cycle/2018 3 ISS schedule list.xlsx'
-    schedule = read_excel(filename)
-    drafts = create_html_drafts(schedule)
-    events = create_events(schedule)
-    if not no_email:
-        for draft in drafts:
-            upload_draft(draft)
-    if not no_cal:
-        for event in events:
-            cal=gcalendar_service.events().insert(calendarId='primary', body=event).execute()
-            print(cal)
+
+
+'''
+cd '/Users/elistavitski/Documents/Running Projects/ISS operations/2021-2 Cycle'
+fid='2021-2 ISS Schedule list.xlsx'
+schedule=read_excel(fid)
+
+
+fil = open('/Users/elistavitski/Documents/Running Projects/ISS operations/letter COVID.html', 'r')
+letter = fil.read().replace('\n', '')
+
+events=create_events(schedule)
+for event in events:
+    print(event)
+    ev = gcalendar_service.events().insert(calendarId='primary', body=event).execute()]
+
+
+
+drafts = create_html_drafts(schedule,'2021-2')
+for draft in drafts:
+    upload_draft(draft)
+
+'''
 
 
 # In [5]: ev = gcalendar_service.events().insert(calendarId='primary', body=events[0]).execute()

@@ -47,7 +47,7 @@ def create_events(schedule):
 def create_html_drafts(schedule, cycle):
     drafts = []
     fid = open('/Users/elistavitski/Documents/Running Projects/ISS operations/letter COVID.html', 'r')
-    letter = fid.read()d
+    letter = fid.read()
     print(letter)
     print(type(letter))
 
