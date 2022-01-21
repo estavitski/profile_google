@@ -16,13 +16,14 @@ def get_service_gmail():
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                'credentials_gmail.json', SCOPES)
+                '/mnt/c/Users/Eli/gmail_secret.json', SCOPES)
             creds = flow.run_local_server(port=0)
         # Save the credentials for the next run
         with open('token_gmail.pickle', 'wb') as token:
             pickle.dump(creds, token)
 
     service = build('gmail', 'v1', credentials=creds)
+    print("Gmail connected")
     return service
 
 gmail_service = get_service_gmail()

@@ -14,13 +14,14 @@ def get_service_drive():
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                'credentials_gdrive.json', SCOPES)
+                '/mnt/c/Users/Eli/gdrive_secret.json', SCOPES)
             creds = flow.run_local_server(port=0)
         # Save the credentials for the next run
         with open('token_gdrive.pickle', 'wb') as token:
             pickle.dump(creds, token)
 
     service = build('drive', 'v3', credentials=creds)
+    print("Google Drive connected")
     return service
 
 drive_service = get_service_drive()

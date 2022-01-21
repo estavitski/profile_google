@@ -44,12 +44,12 @@ def create_events(schedule):
 
 
 
-def create_html_drafts(schedule, cycle):
+def create_html_drafts(schedule, cycle, letter):
     drafts = []
-    fid = open('/Users/elistavitski/Documents/Running Projects/ISS operations/letter COVID.html', 'r')
-    letter = fid.read()
-    print(letter)
-    print(type(letter))
+    # fid = open('/Users/elistavitski/Documents/Running Projects/ISS operations/letter COVID.html', 'r')
+    # letter = fid.read()
+    # print(letter)
+    # print(type(letter))
 
     for i in range(len(schedule)):
         d = schedule.iloc[i]
