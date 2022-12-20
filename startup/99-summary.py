@@ -1,6 +1,6 @@
 import os
 def goto():
-    os.chdir('/mnt/c/Documents and Settings/Eli/OneDrive - Brookhaven National Laboratory/___Running projects/ISS operations/2022-1')
+    os.chdir('/mnt/c/Documents and Settings/Eli/OneDrive - Brookhaven National Laboratory/___Running projects/ISS operations/2022-2')
 
 def read_letter():
     fil = open('/home/elistavitski/.ipython/profile_google/letter.html', 'r')
@@ -39,6 +39,6 @@ for draft in drafts:
 
 # In [5]: ev = gcalendar_service.events().insert(calendarId='primary', body=events[0]).execute()
 #
-# In [6]: ev = gcalendar_service.events().insert(calendarId='primary', body=events[1]).execute()
+# In [6]: ev = gcalendar_service.\events().insert(calendarId='primary', body=events[1]).execute()
 #
 # In [7]:
