@@ -8,3 +8,4 @@ from google.auth.transport.requests import Request
 
 from email.mime.text import MIMEText
 import base64
+import platform

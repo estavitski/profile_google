@@ -2,7 +2,7 @@
 SCOPES = ['https://www.googleapis.com/auth/gmail.modify']
 
 def get_service_gmail():
-
+    system = platform.system()
     creds = None
     # The file token.pickle stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
@@ -15,8 +15,14 @@ def get_service_gmail():
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
+            system = platform.system()
+            if system == "Darwin":
+                json_file = '/Users/elistavitski/gmail_secret.json'
+            elif system == "Windows":
+                json_file = '/mnt/c/Users/Eli/gmail_secret.json'
+
             flow = InstalledAppFlow.from_client_secrets_file(
-                '/mnt/c/Users/Eli/gmail_secret.json', SCOPES)
+                json_file, SCOPES)
             creds = flow.run_local_server(port=0)
         # Save the credentials for the next run
         with open('token_gmail.pickle', 'wb') as token:
@@ -39,12 +45,12 @@ def create_message(sender, to, subject, message_text):
     return {'raw': base64.urlsafe_b64encode(message.as_string().encode()).decode()}
 
 
-def create_html_message(sender, to, subject, message_text):
+def create_html_message(sender, to, cc, subject, message_text):
     message = MIMEText(message_text,'html')
     message['to'] = to
+    message['cc'] = cc
     message['from'] = sender
     message['subject'] = subject
-    #return message
     return {'raw': base64.urlsafe_b64encode(message.as_string().encode()).decode()}
 
 def upload_draft(message_body, user_id="me"):
